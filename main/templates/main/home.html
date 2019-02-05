@@ -1,0 +1,9 @@
+{% extends "main/base.html" %}
+{% block content %}
+    {% if films_list %}
+        {% for filme in films_list %}
+            
+            <a href="#t"><h3>{{filme.title}}</h3></a>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
