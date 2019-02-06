@@ -1,10 +1,17 @@
 {% extends "main/base.html" %}
+{% load staticfiles %}
 {% block content %}
     <div class="row" style="padding: 10px 10px 10px 10px">
         {% if films_list %}
     
         {% for filme in films_list %}
-            <div class="card" style="width:18rem; margin: 10px 10px 10px 10px;">
+            
+            
+            
+            <div class="card" style="width:14rem; margin: 10px 10px 10px 10px;">
+               
+                    
+                <img src="/static/assets/img/{{filme.episode_id}}.jpg"  style="width:100%;height:16rem;" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ filme.title }}</h5>
                     <p class="card-text">{{ filme.opening_crawl|slice:"0:40"}}...</p>
@@ -12,7 +19,7 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="modal_{{ filme.episode_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade col-lg-auto"  id="modal_{{ filme.episode_id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
@@ -22,7 +29,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    
+                    <nav>
+                        <div class="nav nav-tabs" id="myTab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Sobre</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-pers" role="tab" aria-controls="nav-pers" aria-selected="false">Personagens</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-pla" role="tab" aria-controls="nav-pla" aria-selected="false">Planetas</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-esp" role="tab" aria-controls="nav-esp" aria-selected="false">Espécies</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-naves" role="tab" aria-controls="nav-naves" aria-selected="false">Naves</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        {% include "main/parts/tab1.html" %}
+                        {% include "main/parts/tab2.html" %}
+                        {% include "main/parts/tab3.html" %}
+                        {% include "main/parts/tab4.html" %}
+                        {% include "main/parts/tab5.html" %}
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
