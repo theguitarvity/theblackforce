@@ -5,6 +5,7 @@
         <meta charset="utf8">
         <title>The Black Force - Filmes </title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="icon" href="{% static "assets/img/darthvader2.png" %}" type="image/png" >
     </head>
     <body>
         <nav class="navbar navbar-dark bg-dark">
@@ -27,10 +28,10 @@
             $('#modal_2').on('shown.bs.modal', function () {
                 $('#myInput').trigger('focus')
             });
-            $('#myTab a').on('click', function (e) {
+            $('#modal_2 #myTab_2 a').on('click', function (e) {
                 e.preventDefault()
                 $(this).tab('show')
-            })
+            });
         </script>
     </body>
 </html>

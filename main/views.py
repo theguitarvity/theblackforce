@@ -3,16 +3,26 @@ from django.http import HttpResponse, HttpResponseRedirect
 import requests
 
 # cria uma requisição para a api, requerindo os filmes da franquia
-response = requests.get('https://swapi.co/api/films')
 
 
-#armazena o json da requisição
-data = response.json()
+
+
 
 #view index lista todos os filmes da franquia
 def index(request):   
-    context = {'films_list':data['results']}
+    try:
+        response = requests.get('https://swapi.co/api/films')
+        if response.status_code == 200:
+            #armazena o json da requisição
+            data = response.json()   
+            context = {'films_list':data['results']} 
+    except Exception as identifier:
+        context = {'mensagem': 'Falha na conexão com a API'}
+    
+
     return render(request,'main/home.html', context)
+
+
 
 # view detail lista as caracteristicas do filme
 def detail(request, episode_id):

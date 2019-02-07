@@ -2,6 +2,16 @@
 {% load staticfiles %}
 {% block content %}
     <div class="row" style="padding: 10px 10px 10px 10px">
+        {% if mensagem %}
+            <div class="jumbotron">
+                <h1 class="display-4">{{mensagem}}</h1>
+                <p class="lead">Houve algum problema com o servidor. Tente novamente mais tarde ou verifique sua conexão.</p>
+                <hr class="my-4">
+                
+                <a class="btn btn-primary btn-lg" href="{% url 'index' %}" role="button">Recarregar</a>
+            </div>
+        
+        {% endif %}
         {% if films_list %}
     
         {% for filme in films_list %}
@@ -30,20 +40,14 @@
                 </div>
                 <div class="modal-body">
                     <nav>
-                        <div class="nav nav-tabs" id="myTab" role="tablist">
+                        <div class="nav nav-tabs" id="myTab_{{filme.episode_id}}" role="tablist">
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Sobre</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-pers" role="tab" aria-controls="nav-pers" aria-selected="false">Personagens</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-pla" role="tab" aria-controls="nav-pla" aria-selected="false">Planetas</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-esp" role="tab" aria-controls="nav-esp" aria-selected="false">Espécies</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-naves" role="tab" aria-controls="nav-naves" aria-selected="false">Naves</a>
+                            
                         </div>
                     </nav>
-                    <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-content" id="nav-tabContent_{{filme.episode_id}}">
                         {% include "main/parts/tab1.html" %}
-                        {% include "main/parts/tab2.html" %}
-                        {% include "main/parts/tab3.html" %}
-                        {% include "main/parts/tab4.html" %}
-                        {% include "main/parts/tab5.html" %}
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
